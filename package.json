@@ -1,0 +1,15 @@
+{
+  "name": "cordova-plugin-jshare",
+  "version": "1.0.0",
+  "description": "jshare plugin for cordova",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [
+    "cordova",
+    "share"
+  ],
+  "author": "xin",
+  "license": "MIT"
+}
