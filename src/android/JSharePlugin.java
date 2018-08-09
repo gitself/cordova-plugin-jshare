@@ -235,7 +235,7 @@ public class JSharePlugin extends CordovaPlugin {
             e.printStackTrace();
             callbackContext.error("Parameters error.");
         }
-        JShareInterface.removeAuthorize(platform,new ThirdPartyAuthListener(callbackContext));
+        JShareInterface.getUserInfo(platform,new ThirdPartyAuthListener(callbackContext));
     }
 
     /**
