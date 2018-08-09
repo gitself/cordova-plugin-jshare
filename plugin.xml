@@ -19,7 +19,7 @@
     <dependency id="cordova-plugin-jcore" />
 
     <js-module src="www/JSharePlugin.js" name="JSharePlugin">
-        <clobbers target="JShare" />
+        <clobbers target="plugins.JShare" />
     </js-module>
 
     <!--<platform name="ios">
