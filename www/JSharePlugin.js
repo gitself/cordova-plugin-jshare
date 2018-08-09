@@ -83,11 +83,11 @@ JSharePlugin.prototype.setDebugMode = function(mode) {
  * }
  */ 
 JSharePlugin.prototype.configPlatform=function(params){
-    this.callNative("setWechat", [params], successCallback);
+    this.callNative("configPlatform", [params], successCallback);
 };
 
 /**
- * 获取已经正确配置的平台 API 
+ * 获取已经正确配置的平台 
  * 
  */ 
 JSharePlugin.prototype.getPlatformList=function(successCallback){
@@ -139,9 +139,24 @@ JSharePlugin.prototype.isAuthorize = function(name,successCallback) {
   this.callNative("isAuthorize", [name], successCallback);
 };
 
+/**
+ * 移除某个平台授权
+ * @param name 平台名称，值可选 
+ * "Wechat"、
+ * "SinaWeibo"、
+ * "QQ"
+ * */
 JSharePlugin.prototype.removeAuthorize = function(name,successCallback) {
   this.callNative("removeAuthorize", [name], successCallback);
 };
+
+/**
+ * 获取某个平台用户信息
+ * @param name 平台名称，值可选 
+ * "Wechat"、
+ * "SinaWeibo"、
+ * "QQ"
+ * */
 JSharePlugin.prototype.getUserInfo = function(name,successCallback) {
     this.callNative("getUserInfo", [name], successCallback);
 };
