@@ -1,10 +1,5 @@
 var JSharePlugin = function() {};
 
-// private plugin function
-
-JSharePlugin.prototype.receiveMessage = {};
-JSharePlugin.prototype.openNotification = {};
-JSharePlugin.prototype.receiveNotification = {};
 
 JSharePlugin.prototype.isPlatformIOS = function() {
   return (
