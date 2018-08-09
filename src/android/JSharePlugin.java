@@ -60,7 +60,6 @@ public class JSharePlugin extends CordovaPlugin {
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         mContext = cordova.getActivity().getApplicationContext();
-        JShareInterface.init(mContext);
         cordovaActivity = cordova.getActivity();
     }
 
