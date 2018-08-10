@@ -92,15 +92,12 @@ public class JSharePlugin extends CordovaPlugin {
     }
 
     void init(JSONArray data, CallbackContext callbackContext) {
-        PlatformConfig conf=new PlatformConfig();
-        JSONObject confData=data.getJSONObject(0);
+        JSONObject confData=data.optJSONObject(0);
         if(confData==null){
             callbackContext.error("config params must not be null");
             return;
         }
         this.configPlatform(confData,callbackContext);
-        JShareInterface.init(mContext);
-        callbackContext.success("jshare sdk init finish");
     }
 
     void setDebugMode(JSONArray data, CallbackContext callbackContext) {
@@ -114,10 +111,11 @@ public class JSharePlugin extends CordovaPlugin {
         }
     }
 
-    private configPlatform(JSONObject confData, CallbackContext callbackContext) {
+    private void configPlatform(JSONObject confData, CallbackContext callbackContext) {
         JSONObject wechat=confData.optJSONObject(Wechat.Name);
         JSONObject qq=confData.optJSONObject(QQ.Name);
         JSONObject weibo=confData.optJSONObject(SinaWeibo.Name);
+        PlatformConfig conf=new PlatformConfig();
         if(wechat!=null){
             try{
                 String appId = wechat.getString("appId");
@@ -149,6 +147,8 @@ public class JSharePlugin extends CordovaPlugin {
                 callbackContext.error("config "+SinaWeibo.Name+" parameters error.");
             }
         }
+        JShareInterface.init(mContext,conf);
+        callbackContext.success("jshare sdk init finish");
     }
 
     void getPlatformList(JSONArray data, final CallbackContext callback) {
