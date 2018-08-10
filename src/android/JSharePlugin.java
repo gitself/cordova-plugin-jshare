@@ -92,7 +92,15 @@ public class JSharePlugin extends CordovaPlugin {
     }
 
     void init(JSONArray data, CallbackContext callbackContext) {
+        PlatformConfig conf=new PlatformConfig();
+        JSONObject confData=data.getJSONObject(0);
+        if(confData==null){
+            callbackContext.error("config params must not be null");
+            return;
+        }
+        this.configPlatform(confData,callbackContext);
         JShareInterface.init(mContext);
+        callbackContext.success("jshare sdk init finish");
     }
 
     void setDebugMode(JSONArray data, CallbackContext callbackContext) {
@@ -106,14 +114,10 @@ public class JSharePlugin extends CordovaPlugin {
         }
     }
 
-    void configPlatform(JSONArray data, CallbackContext callbackContext) {
-        PlatformConfig conf=new PlatformConfig();
-        JSONObject confData=data.optJSONObject(0);
-        if(confData==null){
-            callbackContext.error("config params must not be null");
-            return;
-        }
+    private configPlatform(JSONObject confData, CallbackContext callbackContext) {
         JSONObject wechat=confData.optJSONObject(Wechat.Name);
+        JSONObject qq=confData.optJSONObject(QQ.Name);
+        JSONObject weibo=confData.optJSONObject(SinaWeibo.Name);
         if(wechat!=null){
             try{
                 String appId = wechat.getString("appId");
@@ -124,7 +128,6 @@ public class JSharePlugin extends CordovaPlugin {
                 callbackContext.error("config "+Wechat.Name+" parameters error.");
              }
         }
-        JSONObject qq=confData.optJSONObject(QQ.Name);
         if(qq!=null){
             try{
                 String appId = qq.getString("appId");
@@ -135,7 +138,6 @@ public class JSharePlugin extends CordovaPlugin {
                 callbackContext.error("config "+QQ.Name+" parameters error.");
             }
         }
-        JSONObject weibo=confData.optJSONObject(SinaWeibo.Name);
         if(weibo!=null){
             try{
                 String appKey = weibo.getString("appKey");

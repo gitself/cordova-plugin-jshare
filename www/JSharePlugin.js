@@ -33,28 +33,9 @@ JSharePlugin.prototype.callNative = function(
   }
 };
 
-// Common methods
-JSharePlugin.prototype.init = function() {
-  if (this.isPlatformIOS()) {
-    //this.callNative("initial", [], null);
-  } else {
-    this.callNative("init", [], null);
-  }
-};
-
-JSharePlugin.prototype.setDebugMode = function(mode) {
-  if (device.platform === "Android") {
-    this.callNative("setDebugMode", [mode], null);
-  } else {
-    if (mode === true) {
-      this.setDebugModeFromIos();
-    } else {
-      this.setLogOFF();
-    }
-  }
-};
-
 /**
+ * init JShare Sdk and config platform
+ * 
  * 设置微信平台信息。
  *  参数说明
  *  appId 微信平台appId
@@ -77,8 +58,24 @@ JSharePlugin.prototype.setDebugMode = function(mode) {
  * QQ:{ 'appId': string, 'appKey':string }
  * }
  */ 
-JSharePlugin.prototype.configPlatform=function(params){
-    this.callNative("configPlatform", [params], successCallback);
+JSharePlugin.prototype.init = function(param,successCallback) {
+  if (this.isPlatformIOS()) {
+    //this.callNative("initial", [], null);
+  } else {
+    this.callNative("init", [param], successCallback);
+  }
+};
+
+JSharePlugin.prototype.setDebugMode = function(mode) {
+  if (device.platform === "Android") {
+    this.callNative("setDebugMode", [mode], null);
+  } else {
+    if (mode === true) {
+      this.setDebugModeFromIos();
+    } else {
+      this.setLogOFF();
+    }
+  }
 };
 
 /**
